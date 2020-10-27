@@ -10,17 +10,19 @@
   
 <ul>
 <li><a href="addideas.php">Mõtete sisestamine!</a></li>
-<li><a href="motetelugemine.php">Mõtete lugemine!</a></li>
-<li><a href="listfilms.php">Filmiinfo näitamine</a></li>
 <li><a href="addfilms.php">Filmide lisamine</a></li>
-<li><a href="userprofile.php">Minu kasutajaprofiil</a></li>
 <li><a href="addfilmrelations.php">Seoste lisamine</a></li>
 <li><a href="addquote.php">Tsitaadi lisamine</a></li>
-<li><a href="?logout=1">Logi välja!</a></li>
+<br>
+<li><a href="motetelugemine.php">Mõtete lugemine!</a></li>
+<li><a href="listfilms.php">Filmiinfo näitamine</a></li>
+<br>
+<li><a href="userprofile.php">Minu kasutajaprofiil</a></li>
 <li><a href="photoupload.php">Galeriipiltide üles laadimine</a></li>
-
+<br>
+<li><a href="?logout=1">Logi välja!</a></li>
 </ul>
 
-<hr>
+<hr />
 </body>
 </html>

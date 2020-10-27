@@ -46,7 +46,7 @@ function savefilm($title, $productionyear, $duration, $filmdescription) {
 		echo $conn->error; // <-- ainult enda jaoks õppimise ajal
 		$stmt->bind_param("siis", $title, $productionyear, $duration, $filmdescription);
 		if($stmt->execute()) {
-			$notice = "OK";
+			$notice = "ok";
 		}
 		else {
 			$notice = "Filmi salvestamisel tekkis tehniline tõrge: " .$stmt->error;
@@ -74,7 +74,7 @@ function savefilmgenre($filmgenreinput, $genredescriptioninput) {
 		echo $conn->error; // <-- ainult enda jaoks õppimise ajal
 		$stmt->bind_param("ss", $filmgenreinput, $genredescriptioninput);
 		if($stmt->execute()) {
-			$notice = "OK";
+			$notice = "ok";
 		}
 		else {
 			$notice = "Žanri salvestamisel tekkis tehniline tõrge: " .$stmt->error;
@@ -112,31 +112,6 @@ function savefilmgenre($filmgenreinput, $genredescriptioninput) {
 		$conn->close();
 		return $notice;
 	} // savestudio lõpeb
-	
-// Salvesta film  title, production_year, duration
-function savefilm($filmnameinput, $production_yearinput, $durationinput, $description) {
-		$conn = new mysqli($GLOBALS["serverhost"], $GLOBALS["serverusername"], $GLOBALS["serverpassword"], $GLOBALS["database"]);
-		$stmt = $conn->prepare("SELECT movie_id FROM movie WHERE title = ? AND production_year = ? AND duration = ?");
-		echo $conn->error; // <-- ainult õppimise jaoks!
-		$stmt->bind_param("sii", $filmnameinput, $production_yearinput, $durationinput);
-		$stmt->bind_result($idfromdb);
-		$stmt->execute();
-		if($stmt->fetch()) {
-			$notice = "Selline film on juba olemas!";
-		}
-		else {
-			$stmt->close();
-			$stmt = $conn->prepare("INSERT INTO movie (title, production_year, duration, description) VALUES(?, ?, ?, ?)");
-			echo $conn->error; // <-- ainult enda jaoks õppimise ajal
-			$stmt->bind_param("siis", $filmnameinput, $production_yearinput, $durationinput, $description);
-			if($stmt->execute()) {
-				$notice = "Salvestatud!";
-			}
-			else {
-				$notice = "Filmi salvestamisel tekkis tehniline tõrge: " .$stmt->error;
-			}
-		}	
-}
 
 // Salvesta amet
 	function saveposition($position, $positiondescription) {
@@ -155,7 +130,7 @@ function savefilm($filmnameinput, $production_yearinput, $durationinput, $descri
 			echo $conn->error; // <-- ainult enda jaoks õppimise ajal
 			$stmt->bind_param("ss", $position, $positiondescription);
 			if($stmt->execute()) {
-				$notice = "OK";
+				$notice = "ok";
 			}
 			else {
 				$notice = "Stuudio salvestamisel tekkis tehniline tõrge: " .$stmt->error;
@@ -165,4 +140,4 @@ function savefilm($filmnameinput, $production_yearinput, $durationinput, $descri
 		$stmt->close();
 		$conn->close();
 		return $notice;
-	}// filmi salvestamine tehtud
+	}//save position lõppeb

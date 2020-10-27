@@ -5,7 +5,7 @@
   require ("fnc_common.php");
   
   $notice = "";
-  $userdescription = "";
+  $userdescription = readuserdescription();
   
   //kui klikiti submit, siis...
   if(isset($_POST["profilesubmit"])){
@@ -24,7 +24,6 @@
   <h1><?php echo $_SESSION["userfirstname"] ." " .$_SESSION["userlastname"]; ?></h1>
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>Leht on loodud veebiprogrammeerimise kursusel <a href="http://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate instituudis.</p>
-  
   <ul>
     <li><a href="home.php">Avalehele</a>!</li>
 	<li><a href="?logout=1">Logi välja</a>!</li>
@@ -38,10 +37,10 @@
 	<textarea rows="10" cols="80" name="descriptioninput" id="descriptioninput" placeholder="Minu lühikirjeldus ..."><?php echo $userdescription; ?></textarea>
 	<br>
 	<label for="bgcolorinput">Minu valitud taustavärv: </label>
-	<input type="color" name="bgcolorinput" id="bgcolorinput" value="<?php echo $_SESSION["bgcolor"]; ?>">
+	<input type="color" name="bgcolorinput" id="bgcolorinput" value="<?php echo $_SESSION["userbgcolor"]; ?>">
 	<br>
 	<label for="txtcolorinput">Minu valitud tekstivärv: </label>
-	<input type="color" name= "txtcolorinput" value="<?php echo $_SESSION["usertxtcolor"]; ?>">
+	<input type="color" name= "txtcolorinput" id="txtcolorinput" value="<?php echo $_SESSION["usertxtcolor"]; ?>">
 	<br>
 	
 	<input type="submit" name="profilesubmit" value="Salvesta profiil">
