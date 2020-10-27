@@ -17,6 +17,8 @@
 <li><a href="addfilmrelations.php">Seoste lisamine</a></li>
 <li><a href="addquote.php">Tsitaadi lisamine</a></li>
 <li><a href="?logout=1">Logi välja!</a></li>
+<li><a href="photoupload.php">Galeriipiltide üles laadimine</a></li>
+
 </ul>
 
 <hr>
