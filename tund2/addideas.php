@@ -5,9 +5,9 @@
   if(isset($_POST["ideasubmit"]) and !empty($_POST["ideainput"])){
 	$conn = new mysqli($serverhost, $serverusername, $serverpassword, $database);
 	//valmistame ette SQL käsu
-	$stmt = $conn->prepare("INSERT INTO myideas (idea) VALUES(?)");
+	$stmt = $conn->prepare("INSERT INTO nonsens (nonsensidea) VALUES(?)");
 	echo $conn->error;
-	//seome käasuga päris andmed
+	//seome käsuga päris andmed
 	//s-string, i-integer, d-decimal
 	$stmt->bind_param("s", $_POST["ideainput"]);
 	$stmt->execute();

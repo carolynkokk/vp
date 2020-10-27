@@ -2,10 +2,7 @@
   $database = "if20_carolyn_ko_1";
   
   function readfilms(){
-	  //loeme andmebaasist
-	  //var_dump($GLOBALS);
 	  $conn = new mysqli($GLOBALS["serverhost"], $GLOBALS["serverusername"], $GLOBALS["serverpassword"], $GLOBALS["database"]);
-	  //valmistame ette SQL käsu
 	  //$stmt = $conn->prepare("SELECT pealkiri, aasta, kestus, zanr, tootja, lavastaja FROM film");
 	  $stmt = $conn->prepare("SELECT * FROM film");
 	  echo $conn->error;

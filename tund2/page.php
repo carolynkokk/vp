@@ -5,13 +5,55 @@ session_start();
   require("../../../config.php");
   require("fnc_common.php");
   require("fnc_user.php");
+  
+  $email = null;
+  $formerror = null;
+  $emailerror = null;
+  $pwderror = null;
+  
   $fulltimenow = date("d.m.Y H:i:s");
   $hournow = date("H");
   $partofday = "lihtsalt aeg";
   $weekdaynameset = ["esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev", "pühapäev"];
   $monthnameset = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
   $weekdaynow = date("N");
-  //echo $weekdaynow;
+  $datenow = date("d");
+  $monthnow = date("m");
+  $yearnow = date("Y");
+  $timenow = date("H:i:s");
+ 
+  if(isset($_POST["usersubmit"])) {
+	  if(empty($_POST["emailinput"])) {
+        $emailerror = "Kasutajatunnus on sisestamata!";
+      }
+    else {
+		$email = filter_var($_POST["emailinput"], FILTER_SANITIZE_EMAIL);
+		if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+		} else {
+		  $emailerror = "Palun sisesta õige kujuga e-postiaadress!";
+		}
+    }
+	  
+	  if(empty($_POST["passwordinput"])) {
+        $pwderror = "Salasõna on sisestamata!";
+      }
+      if(!empty($_POST["passwordinput"]) and strlen($_POST["passwordinput"]) < 8) {
+        $pwderror = "Liiga lühike salasõna! (" . strlen($_POST["passwordinput"]) . " märki 8 asemel)";
+      }
+
+    if(empty($emailerror) and empty($pwderror)) {
+      $result = signin($email, $_POST["passwordinput"]);
+      // if($result == "OK") {
+      //   $notice = "Sisse logimine õnnestus!";
+      //   $email = "";
+      // }
+      // else {
+        $formerror = $result;
+      // }
+  
+    }
+  }
 
   if($hournow < 6){
 	  $partofday = "uneaeg";

@@ -5,18 +5,18 @@
   <title>Veebiprogrammeerimine</title>
   <stile>
   <?php
-  echo "body { \n";
+  //echo "body { \n";
   if(isset($_SESSION["userbgcolor"])){
-	  echo "\t bacground-color: " .$_SESSION["userbgcolor"] ."; \n";
+	//  echo "\t bacground-color: " .$_SESSION["userbgcolor"] ."; \n";
   } else {
-	  echo "\t bacground-color: #FFFFFF; \n";
+	 // echo "\t bacground-color: #FFFFFF; \n";
   }
   if(isset($_SESSION["usertxtcolor"])){
-	  echo "\t color: " .$_SESSION["usertxtcolor"] ."; \n";
+	 // echo "\t color: " .$_SESSION["usertxtcolor"] ."; \n";
   } else {
-	  echo "\t color: #000000; \n";
+	 // echo "\t color: #000000; \n";
   }
-  echo "\t } \n";
+  //echo "\t } \n";
   ?>
   </style>
 </head>

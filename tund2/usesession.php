@@ -1,8 +1,7 @@
 <?php
 session_start();
- // $username = "Carolyn Kokk";
  
- //kas on sissem loginud
+ //kas on sisse loginud
  if(!isset($_SESSION["userid"])){
 	 //jõuga suunatakse sisselogimise lehele
 	 header("Location: page.php");

@@ -13,13 +13,15 @@
 	   exit();
   }
   //loeme andmebaasi login ifo muutujad
-  require("../../../config_vp2020.php");
+  require("../../../config.php");
   require("fnc_filmrelations.php");
 
   $genrenotice = "";
   $selectedfilm = "";
   $selectedgenre = "";
   $selectedstudio = "";
+  $studionotice = "";
+  
   
   if(isset($_POST["filmgenrerelationsubmit"])){
 	//$selectedfilm = $_POST["filminput"];
@@ -35,6 +37,23 @@
 	}
 	if(!empty($selectedfilm) and !empty($selectedgenre)){
 		$genrenotice = storenewgenrerelation($selectedfilm, $selectedgenre);
+	}
+  }
+  
+  if(isset($_POST["filmstudiorelationsubmit"])){
+	//$selectedfilm = $_POST["filminput"];
+	if(!empty($_POST["filminput"])){
+		$selectedfilm = intval($_POST["filminput"]);
+	} else {
+		$studionotice = " Vali film!";
+	}
+	if(!empty($_POST["filmstudioinput"])){
+		$selectedstudio = intval($_POST["filmstudioinput"]);
+	} else {
+		$studionotice .= " Vali stuudio!";
+	}
+	if(!empty($selectedfilm) and !empty($selectedstudio)){
+		$studionotice = storenewstudiorelation($selectedfilm, $selectedstudio);
 	}
   }
 
@@ -55,18 +74,25 @@
     <li><a href="home.php">Avalehele</a></li>
 	<li><a href="?logout=1">Logi välja</a>!</li>
   </ul>
-  <h2>Määrame filmi stuudio/tootja</h2>
-  <form method="POST" action="<?php echo htmlspecialchars ($_SERVER["PHP
-  <h2>Määrame filmile žanri</h2>
+    <h2>Määrame filmi stuudio/tootja</h2>
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <?php
+		echo $filmselecthtml;
+		echo $filmstudioselecthtml;
+	?>
+    <input type="submit" name="filmstudiorelationsubmit" value="Salvesta seos stuudioga"><span><?php echo $studionotice; ?></span>
+  </form>
+    
   <hr>
+  <h2>Määrame filmile žanri</h2>
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <?php
 		echo $filmselecthtml;
 		echo $filmgenreselecthtml;
 	?>
-
-	<input type="submit" name="filmgenrerelationsubmit" value="Salvesta filmiinfo"><span><?php echo $genrenotice; ?></span>
+	
+	<input type="submit" name="filmgenrerelationsubmit" value="Salvesta seos žanriga"><span><?php echo $genrenotice; ?></span>
   </form>
-
+  
 </body>
 </html>
