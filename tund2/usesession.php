@@ -1,6 +1,8 @@
 <?php
-session_start();
- 
+//session_start();
+require("classes/SessionManager.class.php");
+SessionManager::sessionStart("vp", 0, "/~carokok/", "greeny.cs.tlu.ee");
+
  //kas on sisse loginud
  if(!isset($_SESSION["userid"])){
 	 //jõuga suunatakse sisselogimise lehele

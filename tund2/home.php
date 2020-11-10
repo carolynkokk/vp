@@ -1,14 +1,31 @@
 <?php
-  require("usesession.php");
+require("usesession.php");
   
 //klassi testimine
- //equire("classes/First_class.php");
- //myclassobject = new First(10);
- //echo "salajane arv on: " .$myclassobject->mybusiness;
+//require("classes/First_class.php");
+//myclassobject = new First(10);
+//echo "salajane arv on: " .$myclassobject->mybusiness;
 //echo "avalik arv on: " .$myclassobject->everybodysbusiness;
 //myclassobject->tellMe();
-//unset (myclassobject);
-  
+//unset ($myclassobject);
+//echo "Avalik arv on: " .$myclassobject->everybodysbusiness;
+
+//tegelen küpsistega - cookies
+//setcookie see funktsioon peab olema enne <html> elementi
+//küpsise nimi, väärtus, aegumistähtaeg, failitee (domeeni piires), domeen, https kasutamine
+setcookie("vpvisitorname" $_SESSION["userfirstname"] ." " $_SESSION["userlastname"], time() + (86400 * 8), "/~carokok/", "greeny.cs.tlu.ee", isset($_SERVER["HTTPS"]), true);
+$lastvisitor = null;
+if(isset($_COOKIE["$vpvisitorname"])){
+	$lastvisitor = "<p>Viimati külastas lehte: " .$_COOKIE["vpvisitorname"] .".</p> \n";
+} else {
+	$lastvisitor = "<p>Küpsiseid ei leitud, viimane külastaja pole teada.</p> \n";
+}
+
+//küpsise kustutamine
+//kustutamiseks tuleb sama küpsis kirjutada minevikus aegumistähtajaga, näiteks time() - 3600
+	
+
+
   require("header.php"); 
 ?>
 
@@ -25,6 +42,7 @@
 <br>
 <li><a href="motetelugemine.php">Mõtete lugemine!</a></li>
 <li><a href="listfilms.php">Filmiinfo näitamine</a></li>
+<li><a href="photogallery_public.php">Avalike fotode galerii</a></li>
 <br>
 <li><a href="userprofile.php">Minu kasutajaprofiil</a></li>
 <li><a href="photoupload.php">Galeriipiltide üles laadimine</a></li>
@@ -32,6 +50,14 @@
 <li><a href="?logout=1">Logi välja!</a></li>
 </ul>
 
-<hr />
+<hr>
+
+	<h3>Viimane külastaja sellest arvutist<h3/>
+	<?php
+		if(count($_COOKIE) > 0){
+			echo "<p>Küpsised on lubatud! Leiti: </p> \n";
+		}
+		echo $lastvisitor;
+	?>
 </body>
 </html>

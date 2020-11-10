@@ -3,7 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>Veebiprogrammeerimine 2020</title>
-  <stile>
+  
+  <?php
+  if(isset($tolink)){
+	  echo $tolink;
+  }
+  ?>
+  
+  <style>
   <?php
   echo "body { \n";
   if(isset($_SESSION["userbgcolor"])){
